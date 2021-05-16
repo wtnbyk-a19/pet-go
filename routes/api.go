@@ -10,6 +10,7 @@ func Init(e *echo.Echo) {
 
 	g := e.Group("/api")
 	{
-		g.POST("/signup", api.CreateUser())
+		g.POST("/signup", api.SignUp())
+		g.POST("/:id/register", api.RegisterPet())
 	}
 }

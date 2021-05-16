@@ -8,13 +8,13 @@ import (
 	"github.com/valyala/fasthttp"
 )
 
-type CreateUserResponse struct {
+type SignUpResponse struct {
 	Name     string `json:"name"`
 	Email    string `json:"email"`
 	Password string `json:"password"`
 }
 
-func CreateUser() echo.HandlerFunc {
+func SignUp() echo.HandlerFunc {
 	return func(c echo.Context) error {
 
 		dbs := c.Get("dbs").(*middlewares.DatabaseClient)
@@ -32,7 +32,7 @@ func CreateUser() echo.HandlerFunc {
 
 		dbs.DB.Create(&user)
 
-		response := CreateUserResponse{
+		response := SignUpResponse{
 			Name:     user.Name,
 			Email:    user.Email,
 			Password: user.Password,
