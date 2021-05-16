@@ -1,13 +1,22 @@
 package models
 
-import "time"
+import (
+	"time"
+)
 
 type Pet struct {
-	ID        int        `gorm:"primary_key"`
-	UserID    int        `json:"user_id"`
-	CreatedAt time.Time  `json:"-"`
-	UpdatedAt time.Time  `json:"-"`
-	DeletedAt *time.Time `sql:"index"json:"-"`
+	ID            int        `gorm:"primary_key"`
+	UserID        int        `json:"user_id"`
+	PetName       string     `json:"pet_name"`
+	Gender        string     `json:"gender"`
+	Category      string     `json:"category"`
+	Breed         string     `json:"breed"`
+	Adoptaversary time.Time  `json:"adoptaversary"`
+	Birthday      time.Time  `json:"birthday"`
+	Memo          string     `json:"memo"`
+	CreatedAt     time.Time  `json:"-"`
+	UpdatedAt     time.Time  `json:"-"`
+	DeletedAt     *time.Time `sql:"index"json:"-"`
 
 	User User
 }
