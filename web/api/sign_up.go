@@ -28,12 +28,6 @@ func SignUp() echo.HandlerFunc {
 
 		dbs.DB.Create(&user)
 
-		response := SignUpResponse{
-			Name:     user.Name,
-			Email:    user.Email,
-			Password: user.Password,
-		}
-
-		return c.JSON(fasthttp.StatusOK, response)
+		return c.JSON(fasthttp.StatusOK, nil)
 	}
 }

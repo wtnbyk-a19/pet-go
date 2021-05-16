@@ -1,6 +1,7 @@
 package models
 
 import (
+	"pet-go/models/pet"
 	"time"
 )
 
@@ -18,5 +19,6 @@ type Pet struct {
 	UpdatedAt     time.Time  `json:"-"`
 	DeletedAt     *time.Time `sql:"index"json:"-"`
 
-	User User
+	User     User
+	Physique pet.Physique
 }
