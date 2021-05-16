@@ -10,10 +10,6 @@ import (
 	"github.com/valyala/fasthttp"
 )
 
-type RegisterPetResponse struct {
-	UserID int `json:"user_id"`
-}
-
 func RegisterPet() echo.HandlerFunc {
 	return func(c echo.Context) error {
 
@@ -37,10 +33,6 @@ func RegisterPet() echo.HandlerFunc {
 
 		dbs.DB.Create(&pet)
 
-		response := RegisterPetResponse{
-			UserID: pet.UserID,
-		}
-
-		return c.JSON(fasthttp.StatusOK, response)
+		return c.JSON(fasthttp.StatusOK, nil)
 	}
 }
