@@ -1,10 +1,16 @@
 package routes
 
-import "github.com/labstack/echo"
+import (
+	"pet-go/web/api"
+
+	"github.com/labstack/echo"
+)
 
 func Init(e *echo.Echo) {
 
-	// g := e.Group("/api"){
-
-	// }
+	g := e.Group("/api")
+	{
+		g.POST("/signup", api.SignUp())
+		g.POST("/:id/register", api.RegisterPet())
+	}
 }
