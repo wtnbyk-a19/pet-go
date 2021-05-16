@@ -1,9 +1,17 @@
 package main
 
-import "github.com/labstack/echo"
+import (
+	"pet-go/routes"
+
+	"github.com/labstack/echo"
+)
 
 func main() {
-	echo := echo.New()
+	e := echo.New()
 
-	echo.Logger.Fatal(echo.Start(":8080"))
+	// Routes
+	routes.Init(e)
+
+	// Start server
+	e.Logger.Fatal(e.Start(":8080"))
 }
