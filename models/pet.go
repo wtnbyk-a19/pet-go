@@ -19,6 +19,13 @@ type Pet struct {
 	UpdatedAt     time.Time  `json:"-"`
 	DeletedAt     *time.Time `sql:"index"json:"-"`
 
-	User     User
-	Physique pet.Physique
+	User User
+
+	DailyMeals  pet.DailyMeals
+	Foods       []pet.Food
+	Hospitals   []pet.Hospital
+	Medications []pet.Medication
+	Physique    pet.Physique
+	Salons      []pet.Salon
+	Spots       []pet.Spot
 }
