@@ -2,7 +2,7 @@ package pet
 
 import "time"
 
-type Salon struct {
+type Spot struct {
 	ID          int        `gorm:"primary_key"`
 	Name        string     `json:"name"`
 	StartDate   time.Time  `json:"start_date"`
