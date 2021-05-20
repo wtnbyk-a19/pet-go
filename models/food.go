@@ -1,9 +1,10 @@
-package pet
+package models
 
 import "time"
 
 type Food struct {
 	ID        int        `gorm:"primary_key"`
+	PetUUID   string     `json:"pet_uuid"`
 	Contents  string     `json:"contents"`
 	Category  string     `json:"category"`
 	StartDate time.Time  `json:"start_date"`
@@ -12,4 +13,6 @@ type Food struct {
 	CreatedAt time.Time  `json:"-"`
 	UpdatedAt time.Time  `json:"-"`
 	DeletedAt *time.Time `sql:"index"json:"-"`
+
+	Pet Pet
 }

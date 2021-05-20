@@ -1,13 +1,13 @@
 package models
 
 import (
-	"pet-go/models/pet"
 	"time"
 )
 
 type Pet struct {
 	ID            int        `gorm:"primary_key"`
-	UserID        int        `json:"user_id"`
+	UUID          string     `json:"uuid"`
+	UserUUID      string     `json:"user_uuid"`
 	PetName       string     `json:"pet_name"`
 	Gender        string     `json:"gender"`
 	Category      string     `json:"category"`
@@ -21,11 +21,11 @@ type Pet struct {
 
 	User User
 
-	DailyMeals  pet.DailyMeals
-	Foods       []pet.Food
-	Hospitals   []pet.Hospital
-	Medications []pet.Medication
-	Physique    pet.Physique
-	Salons      []pet.Salon
-	Spots       []pet.Spot
+	DailyMeals  DailyMeals   `gorm:"foreignKey:PetUUID"`
+	Foods       []Food       `gorm:"foreignKey:PetUUID"`
+	Hospitals   []Hospital   `gorm:"foreignKey:PetUUID"`
+	Medications []Medication `gorm:"foreignKey:PetUUID"`
+	Physique    Physique     `gorm:"foreignKey:PetUUID"`
+	Salons      []Salon      `gorm:"foreignKey:PetUUID"`
+	Spots       []Spot       `gorm:"foreignKey:PetUUID"`
 }

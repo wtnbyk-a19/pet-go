@@ -1,9 +1,10 @@
-package pet
+package models
 
 import "time"
 
-type Spot struct {
+type Hospital struct {
 	ID          int        `gorm:"primary_key"`
+	PetUUID     string     `json:"pet_uuid"`
 	Name        string     `json:"name"`
 	StartDate   time.Time  `json:"start_date"`
 	Status      string     `json:"status"`
@@ -15,4 +16,6 @@ type Spot struct {
 	CreatedAt   time.Time  `json:"-"`
 	UpdatedAt   time.Time  `json:"-"`
 	DeletedAt   *time.Time `sql:"index"json:"-"`
+
+	Pet Pet
 }

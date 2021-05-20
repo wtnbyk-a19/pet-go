@@ -1,9 +1,10 @@
-package pet
+package models
 
 import "time"
 
 type Physique struct {
 	ID                int        `gorm:"primary_key"`
+	PetUUID           string     `json:"pet_uuid"`
 	Length            int        `json:"length"`
 	Height            int        `json:"height"`
 	Weight            int        `json:"weight"`
@@ -19,4 +20,6 @@ type Physique struct {
 	CreatedAt         time.Time  `json:"-"`
 	UpdatedAt         time.Time  `json:"-"`
 	DeletedAt         *time.Time `sql:"index"json:"-"`
+
+	Pet Pet
 }

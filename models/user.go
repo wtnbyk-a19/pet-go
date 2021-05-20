@@ -4,7 +4,7 @@ import "time"
 
 type User struct {
 	ID        int        `gorm:"primary_key"`
-	UUID      string     `json:"-"`
+	UUID      string     `json:"uuid"`
 	Name      string     `json:"name"`
 	Email     string     `json:"email"`
 	Password  string     `json:"password"`
@@ -12,5 +12,5 @@ type User struct {
 	UpdatedAt time.Time  `json:"-"`
 	DeletedAt *time.Time `sql:"index"json:"-"`
 
-	Pets []Pet
+	Pets []Pet `gorm:"foreignKey:UserUUID"`
 }

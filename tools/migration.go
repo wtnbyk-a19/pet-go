@@ -17,4 +17,11 @@ func main() {
 
 	db.Debug().AutoMigrate(&models.User{})
 	db.Debug().AutoMigrate(&models.Pet{})
+	db.Debug().AutoMigrate(&models.DailyMeals{})
+	db.Debug().AutoMigrate(&models.Food{})
+	db.Debug().AutoMigrate(&models.Hospital{})
+	db.Debug().AutoMigrate(&models.Medication{})
+	db.Debug().AutoMigrate(&models.Physique{})
+	db.Debug().AutoMigrate(&models.Salon{})
+	db.Debug().AutoMigrate(&models.Spot{})
 }

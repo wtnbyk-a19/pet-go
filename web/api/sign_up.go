@@ -19,11 +19,15 @@ func SignUp() echo.HandlerFunc {
 
 		dbs := c.Get("dbs").(*middlewares.DatabaseClient)
 
+		name := c.FormValue("name")
+		email := c.FormValue("email")
+		password := c.FormValue("password")
+
 		user := models.User{
 			UUID:     createUUID().String(),
-			Name:     c.FormValue("name"),
-			Email:    c.FormValue("email"),
-			Password: c.FormValue("password"),
+			Name:     name,
+			Email:    email,
+			Password: password,
 		}
 
 		dbs.DB.Create(&user)

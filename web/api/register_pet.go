@@ -3,7 +3,6 @@ package api
 import (
 	"pet-go/middlewares"
 	"pet-go/models"
-	"strconv"
 	"time"
 
 	"github.com/labstack/echo"
@@ -15,20 +14,25 @@ func RegisterPet() echo.HandlerFunc {
 
 		dbs := c.Get("dbs").(*middlewares.DatabaseClient)
 
-		userID, _ := strconv.Atoi(c.Param("id"))
-
+		userUUID := c.FormValue("user_uuid")
+		petName := c.FormValue("pet_name")
+		gender := c.FormValue("gender")
+		category := c.FormValue("category")
+		breed := c.FormValue("breed")
+		memo := c.FormValue("memo")
 		adoptaversary, _ := time.Parse("2021/01/01", c.FormValue("adoptaversary"))
 		birthday, _ := time.Parse("2021/01/01", c.FormValue("birthday"))
 
 		pet := models.Pet{
-			UserID:        userID,
-			PetName:       c.FormValue("pet_name"),
-			Gender:        c.FormValue("gender"),
-			Category:      c.FormValue("category"),
-			Breed:         c.FormValue("breed"),
+			UUID:          createUUID().String(),
+			UserUUID:      userUUID,
+			PetName:       petName,
+			Gender:        gender,
+			Category:      category,
+			Breed:         breed,
 			Adoptaversary: adoptaversary,
 			Birthday:      birthday,
-			Memo:          c.FormValue("memo"),
+			Memo:          memo,
 		}
 
 		dbs.DB.Create(&pet)
