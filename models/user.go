@@ -1,6 +1,9 @@
 package models
 
-import "time"
+import (
+	"pet-go/middlewares"
+	"time"
+)
 
 type User struct {
 	ID        int        `gorm:"primary_key"`
@@ -13,4 +16,8 @@ type User struct {
 	DeletedAt *time.Time `sql:"index"json:"-"`
 
 	Pets []Pet `gorm:"foreignKey:UserUUID"`
+}
+
+func (user *User) CreateUser(dbs *middlewares.DatabaseClient) {
+	dbs.DB.Create(&user)
 }

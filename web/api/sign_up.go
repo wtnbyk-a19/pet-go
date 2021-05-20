@@ -19,18 +19,19 @@ func SignUp() echo.HandlerFunc {
 
 		dbs := c.Get("dbs").(*middlewares.DatabaseClient)
 
+		uuid := createUUID().String()
 		name := c.FormValue("name")
 		email := c.FormValue("email")
 		password := c.FormValue("password")
 
 		user := models.User{
-			UUID:     createUUID().String(),
+			UUID:     uuid,
 			Name:     name,
 			Email:    email,
 			Password: password,
 		}
 
-		dbs.DB.Create(&user)
+		user.CreateUser(dbs)
 
 		return c.JSON(fasthttp.StatusOK, nil)
 	}
