@@ -6,7 +6,7 @@ import (
 
 type Pet struct {
 	ID            int        `gorm:"primary_key"`
-	UUID          string     `json:"uuid"`
+	PetUUID       string     `json:"uuid"`
 	UserUUID      string     `json:"user_uuid"`
 	PetName       string     `json:"pet_name"`
 	Gender        string     `json:"gender"`
@@ -18,8 +18,6 @@ type Pet struct {
 	CreatedAt     time.Time  `json:"-"`
 	UpdatedAt     time.Time  `json:"-"`
 	DeletedAt     *time.Time `sql:"index"json:"-"`
-
-	User User
 
 	DailyMeals  DailyMeals   `gorm:"foreignKey:PetUUID"`
 	Foods       []Food       `gorm:"foreignKey:PetUUID"`

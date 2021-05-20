@@ -13,6 +13,4 @@ type Food struct {
 	CreatedAt time.Time  `json:"-"`
 	UpdatedAt time.Time  `json:"-"`
 	DeletedAt *time.Time `sql:"index"json:"-"`
-
-	Pet Pet
 }

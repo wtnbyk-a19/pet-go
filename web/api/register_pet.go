@@ -24,7 +24,7 @@ func RegisterPet() echo.HandlerFunc {
 		birthday, _ := time.Parse("2021/01/01", c.FormValue("birthday"))
 
 		pet := models.Pet{
-			UUID:          createUUID().String(),
+			PetUUID:       createUUID().String(),
 			UserUUID:      userUUID,
 			PetName:       petName,
 			Gender:        gender,
