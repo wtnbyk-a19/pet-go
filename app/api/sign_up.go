@@ -1,8 +1,8 @@
 package api
 
 import (
-	"pet-go/middlewares"
-	"pet-go/models"
+	"pet-go/domain/models"
+	"pet-go/infrastructure/databases"
 
 	"github.com/labstack/echo"
 	"github.com/valyala/fasthttp"
@@ -17,15 +17,15 @@ type SignUpResponse struct {
 func SignUp() echo.HandlerFunc {
 	return func(c echo.Context) error {
 
-		dbs := c.Get("dbs").(*middlewares.DatabaseClient)
+		dbs := databases.DatabaseService()
 
-		uuid := createUUID().String()
+		// uuid := createUUID().String()
 		name := c.FormValue("name")
 		email := c.FormValue("email")
 		password := c.FormValue("password")
 
 		user := models.User{
-			UUID:     uuid,
+			// UUID:     uuid,
 			Name:     name,
 			Email:    email,
 			Password: password,
@@ -33,6 +33,6 @@ func SignUp() echo.HandlerFunc {
 
 		dbs.DB.Create(&user)
 
-		return c.JSON(fasthttp.StatusOK, nil)
+		return c.JSON(fasthttp.StatusOK, user)
 	}
 }

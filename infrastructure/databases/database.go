@@ -9,6 +9,22 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
+type DatabaseClient struct {
+	DB *gorm.DB
+}
+
+func DatabaseService() *DatabaseClient {
+	session, _ := Connect()
+	d := DatabaseClient{DB: session}
+
+	defer d.DB.Close()
+
+	// output sql query
+	d.DB.LogMode(true)
+
+	return &d
+}
+
 func Connect() (db *gorm.DB, err error) {
 
 	err = godotenv.Load()

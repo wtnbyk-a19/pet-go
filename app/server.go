@@ -1,8 +1,7 @@
 package main
 
 import (
-	"pet-go/middlewares"
-	"pet-go/routes"
+	"pet-go/app/routes"
 
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo"
@@ -21,9 +20,6 @@ func init() {
 
 func main() {
 	e := echo.New()
-
-	// Middleware
-	e.Use(middlewares.DatabaseService())
 
 	// Routes
 	routes.Init(e)

@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"pet-go/web/api"
+	"pet-go/app/api"
 
 	"github.com/labstack/echo"
 )

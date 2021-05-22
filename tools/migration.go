@@ -1,8 +1,8 @@
 package main
 
 import (
-	"pet-go/databases"
-	"pet-go/models"
+	"pet-go/domain/models"
+	"pet-go/infrastructure/databases"
 
 	"github.com/sirupsen/logrus"
 )

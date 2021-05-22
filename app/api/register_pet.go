@@ -1,8 +1,8 @@
 package api
 
 import (
-	"pet-go/middlewares"
-	"pet-go/models"
+	"pet-go/domain/models"
+	"pet-go/infrastructure/databases"
 	"time"
 
 	"github.com/labstack/echo"
@@ -12,7 +12,7 @@ import (
 func RegisterPet() echo.HandlerFunc {
 	return func(c echo.Context) error {
 
-		dbs := c.Get("dbs").(*middlewares.DatabaseClient)
+		dbs := databases.DatabaseService()
 
 		userUUID := c.FormValue("user_uuid")
 		petName := c.FormValue("pet_name")
@@ -24,7 +24,7 @@ func RegisterPet() echo.HandlerFunc {
 		birthday, _ := time.Parse("2021/01/01", c.FormValue("birthday"))
 
 		pet := models.Pet{
-			PetUUID:       createUUID().String(),
+			// PetUUID:       createUUID().String(),
 			UserUUID:      userUUID,
 			PetName:       petName,
 			Gender:        gender,
