@@ -31,7 +31,7 @@ func SignUp() echo.HandlerFunc {
 			Password: password,
 		}
 
-		user.CreateUser(dbs)
+		dbs.DB.Create(&user)
 
 		return c.JSON(fasthttp.StatusOK, nil)
 	}
