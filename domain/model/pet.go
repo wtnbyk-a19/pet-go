@@ -1,4 +1,4 @@
-package models
+package model
 
 import (
 	"time"
@@ -6,9 +6,7 @@ import (
 
 type Pet struct {
 	Model
-	PetUUID       string    `json:"uuid"`
-	UserUUID      string    `json:"user_uuid"`
-	PetName       string    `json:"pet_name"`
+	Name          string    `json:"name"`
 	Gender        string    `json:"gender"`
 	Category      string    `json:"category"`
 	Breed         string    `json:"breed"`

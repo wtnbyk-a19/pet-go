@@ -1,10 +1,10 @@
-package models
+package model
 
 import "time"
 
 type Physique struct {
 	Model
-	PetUUID           string    `json:"pet_uuid"`
+	PetID             string    `json:"pet_id"`
 	Length            int       `json:"length"`
 	Height            int       `json:"height"`
 	Weight            int       `json:"weight"`

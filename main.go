@@ -1,7 +1,7 @@
 package main
 
 import (
-	"pet-go/app/routes"
+	"pet-go/router"
 
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo"
@@ -21,8 +21,8 @@ func init() {
 func main() {
 	e := echo.New()
 
-	// Routes
-	routes.Init(e)
+	// router
+	router.Init(e)
 
 	// Start server
 	e.Logger.Fatal(e.Start(":8080"))
