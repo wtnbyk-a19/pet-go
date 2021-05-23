@@ -25,11 +25,6 @@ func (userRepo *UserRepository) Save(user *model.User) (*model.User, error) {
 	return user, result.Error
 }
 
-func (userRepo *UserRepository) Update(user *model.User, mp map[string]interface{}) (*model.User, error) {
-	result := userRepo.SqlHandler.Conn.Model(user).Updates(mp)
-	return user, result.Error
-}
-
 func (userRepo *UserRepository) FindAll() (users []*model.User, err error) {
 	var user []model.User
 	result := userRepo.SqlHandler.Conn.Find(&user)

@@ -9,10 +9,12 @@ import (
 func Init(e *echo.Echo) {
 
 	userHandler := injector.InjectUserHandler()
+	petHandler := injector.InjectPetHandler()
 
 	g := e.Group("/api")
 	{
-		g.GET("/users", userHandler.View())
+		g.GET("/users", userHandler.GetUsers())
 		g.POST("/signup", userHandler.Add())
+		g.POST("/user/pet", petHandler.Add())
 	}
 }

@@ -8,7 +8,7 @@ import (
 type UserUsecase interface {
 	Add(*model.User) (err error)
 	Edit(*model.User) (err error)
-	View() (users []*model.User, err error)
+	GetUsers() (users []*model.User, err error)
 }
 
 type userUsecase struct {
@@ -33,7 +33,8 @@ func (usecase *userUsecase) Edit(user *model.User) (err error) {
 	return
 }
 
-func (usecase *userUsecase) View() (users []*model.User, err error) {
+// Userの全件検索
+func (usecase *userUsecase) GetUsers() (users []*model.User, err error) {
 	users, err = usecase.userRepo.FindAll()
 	return
 }

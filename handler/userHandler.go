@@ -35,9 +35,9 @@ func (handler *UserHandler) Edit() echo.HandlerFunc {
 	}
 }
 
-func (handler *UserHandler) View() echo.HandlerFunc {
+func (handler *UserHandler) GetUsers() echo.HandlerFunc {
 	return func(c echo.Context) error {
-		users, err := handler.userUsecase.View()
+		users, err := handler.userUsecase.GetUsers()
 		if err != nil {
 			return c.JSON(http.StatusBadRequest, users)
 		}

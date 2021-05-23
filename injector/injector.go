@@ -13,6 +13,7 @@ func InjectDB() database.SqlHandler {
 	return *sqlHandler
 }
 
+// User
 func InjectUserRepository() repository.UserRepository {
 	sqlHandler := InjectDB()
 	return persistence.NewUserRepository(sqlHandler)
@@ -25,4 +26,19 @@ func InjectUserUsecase() usecase.UserUsecase {
 
 func InjectUserHandler() handler.UserHandler {
 	return handler.NewUserHandler(InjectUserUsecase())
+}
+
+// Pet
+func InjectPetRepository() repository.PetRepository {
+	sqlHandler := InjectDB()
+	return persistence.NewPetRepository(sqlHandler)
+}
+
+func InjectPetUsecase() usecase.PetUsecase {
+	PetRepo := InjectPetRepository()
+	return usecase.NewPetUsecase(PetRepo)
+}
+
+func InjectPetHandler() handler.PetHandler {
+	return handler.NewPetHandler(InjectPetUsecase())
 }
