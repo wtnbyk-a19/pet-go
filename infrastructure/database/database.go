@@ -15,12 +15,15 @@ type DatabaseClient struct {
 
 func DatabaseService() *DatabaseClient {
 	session, _ := Connect()
-	d := DatabaseClient{DB: session}
+	databaseClient := new(DatabaseClient)
+	databaseClient.DB = session
+
+	// defer databaseClient.DB.Close()
 
 	// output sql query
-	d.DB.LogMode(true)
+	databaseClient.DB.LogMode(true)
 
-	return &d
+	return databaseClient
 }
 
 func Connect() (db *gorm.DB, err error) {

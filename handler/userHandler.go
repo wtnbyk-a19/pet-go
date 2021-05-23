@@ -34,3 +34,13 @@ func (handler *UserHandler) Edit() echo.HandlerFunc {
 		return c.JSON(http.StatusOK, err)
 	}
 }
+
+func (handler *UserHandler) View() echo.HandlerFunc {
+	return func(c echo.Context) error {
+		users, err := handler.userUsecase.View()
+		if err != nil {
+			return c.JSON(http.StatusBadRequest, users)
+		}
+		return c.JSON(http.StatusOK, users)
+	}
+}

@@ -1,15 +1,18 @@
 package routes
 
 import (
-	"pet-go/handler"
+	"pet-go/injector"
 
 	"github.com/labstack/echo"
 )
 
-func Init(e *echo.Echo, userHandler handler.UserHandler) {
+func Init(e *echo.Echo) {
+
+	userHandler := injector.InjectUserHandler()
 
 	g := e.Group("/api")
 	{
+		g.GET("/users", userHandler.View())
 		g.POST("/signup", userHandler.Add())
 	}
 }

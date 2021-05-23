@@ -8,6 +8,7 @@ import (
 type UserUsecase interface {
 	Add(*model.User) (err error)
 	Edit(*model.User) (err error)
+	View() (users []*model.User, err error)
 }
 
 type userUsecase struct {
@@ -29,5 +30,10 @@ func (usecase *userUsecase) Add(user *model.User) (err error) {
 // Userの編集
 func (usecase *userUsecase) Edit(user *model.User) (err error) {
 	_, err = usecase.userRepo.Save(user)
+	return
+}
+
+func (usecase *userUsecase) View() (users []*model.User, err error) {
+	users, err = usecase.userRepo.FindAll()
 	return
 }

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"pet-go/injector"
 	"pet-go/routes"
 
 	"github.com/joho/godotenv"
@@ -21,12 +20,10 @@ func init() {
 
 func main() {
 
-	userHandler := injector.InjectUserHandler()
-
 	e := echo.New()
 
 	// Routes
-	routes.Init(e, userHandler)
+	routes.Init(e)
 
 	// Start server
 	e.Logger.Fatal(e.Start(":8080"))
