@@ -9,24 +9,23 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type DatabaseClient struct {
-	DB *gorm.DB
+type SqlHandler struct {
+	Conn *gorm.DB
 }
 
-func DatabaseService() *DatabaseClient {
-	session, _ := Connect()
-	databaseClient := new(DatabaseClient)
-	databaseClient.DB = session
+func NewSqlHandler() *SqlHandler {
+	session, err := Connect()
 
-	// defer databaseClient.DB.Close()
+	if err != nil {
+		logrus.Fatal(err)
+	}
 
-	// output sql query
-	databaseClient.DB.LogMode(true)
-
-	return databaseClient
+	sqlHandler := new(SqlHandler)
+	sqlHandler.Conn = session
+	return sqlHandler
 }
 
-func Connect() (db *gorm.DB, err error) {
+func Connect() (conn *gorm.DB, err error) {
 
 	err = godotenv.Load()
 
@@ -34,7 +33,7 @@ func Connect() (db *gorm.DB, err error) {
 		logrus.Fatal("Error loading .env file")
 	}
 
-	db, err = gorm.Open("mysql",
+	conn, err = gorm.Open("mysql",
 		os.Getenv("DB_USERNAME")+":"+
 			os.Getenv("DB_PASSWORD")+
 			"@tcp("+os.Getenv("DB_HOST")+":"+
@@ -46,5 +45,5 @@ func Connect() (db *gorm.DB, err error) {
 		logrus.Fatal(err)
 	}
 
-	return db, err
+	return conn, err
 }

@@ -8,9 +8,14 @@ import (
 	"pet-go/usecase"
 )
 
+func InjectDB() database.SqlHandler {
+	sqlHandler := database.NewSqlHandler()
+	return *sqlHandler
+}
+
 func InjectUserRepository() repository.UserRepository {
-	dbs := database.DatabaseService()
-	return persistence.NewUserRepository(dbs)
+	sqlHandler := InjectDB()
+	return persistence.NewUserRepository(sqlHandler)
 }
 
 func InjectUserUsecase() usecase.UserUsecase {

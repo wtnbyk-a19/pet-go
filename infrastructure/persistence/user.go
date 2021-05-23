@@ -7,35 +7,34 @@ import (
 )
 
 type UserRepository struct {
-	dbs *database.DatabaseClient
+	database.SqlHandler
 }
 
-func NewUserRepository(dbs *database.DatabaseClient) repository.UserRepository {
-	userRepository := UserRepository{dbs}
+func NewUserRepository(sqlHandler database.SqlHandler) repository.UserRepository {
+	userRepository := UserRepository{sqlHandler}
 	return &userRepository
 }
 
 func (userRepo *UserRepository) Create(user *model.User) (*model.User, error) {
-	result := userRepo.dbs.DB.Create(user)
-	// defer userRepo.dbs.DB.Close()
+	result := userRepo.SqlHandler.Conn.Create(user)
 	return user, result.Error
 }
 
 func (userRepo *UserRepository) Save(user *model.User) (*model.User, error) {
-	result := userRepo.dbs.DB.Save(user)
+	result := userRepo.SqlHandler.Conn.Save(user)
 	return user, result.Error
 }
 
 func (userRepo *UserRepository) Update(user *model.User, mp map[string]interface{}) (*model.User, error) {
-	result := userRepo.dbs.DB.Model(user).Updates(mp)
+	result := userRepo.SqlHandler.Conn.Model(user).Updates(mp)
 	return user, result.Error
 }
 
 func (userRepo *UserRepository) FindAll() (users []*model.User, err error) {
-	var rows []model.User
-	result := userRepo.dbs.DB.Find(&rows)
+	var user []model.User
+	result := userRepo.SqlHandler.Conn.Find(&user)
 
-	for _, v := range rows {
+	for _, v := range user {
 		users = append(users, &v)
 	}
 
