@@ -1,27 +1,27 @@
 package main
 
 import (
-	"pet-go/domain/models"
-	"pet-go/infrastructure/databases"
+	"pet-go/domain/model"
+	"pet-go/infrastructure/database"
 
 	"github.com/sirupsen/logrus"
 )
 
 func main() {
-	db, err := databases.Connect()
+	db, err := database.Connect()
 	defer db.Close()
 
 	if err != nil {
 		logrus.Fatal(err)
 	}
 
-	db.Debug().AutoMigrate(&models.User{})
-	db.Debug().AutoMigrate(&models.Pet{})
-	db.Debug().AutoMigrate(&models.DailyMeals{})
-	db.Debug().AutoMigrate(&models.Food{})
-	db.Debug().AutoMigrate(&models.Hospital{})
-	db.Debug().AutoMigrate(&models.Medication{})
-	db.Debug().AutoMigrate(&models.Physique{})
-	db.Debug().AutoMigrate(&models.Salon{})
-	db.Debug().AutoMigrate(&models.Spot{})
+	db.Debug().AutoMigrate(&model.User{})
+	db.Debug().AutoMigrate(&model.Pet{})
+	db.Debug().AutoMigrate(&model.DailyMeals{})
+	db.Debug().AutoMigrate(&model.Food{})
+	db.Debug().AutoMigrate(&model.Hospital{})
+	db.Debug().AutoMigrate(&model.Medication{})
+	db.Debug().AutoMigrate(&model.Physique{})
+	db.Debug().AutoMigrate(&model.Salon{})
+	db.Debug().AutoMigrate(&model.Spot{})
 }

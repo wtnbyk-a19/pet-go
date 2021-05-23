@@ -1,10 +1,10 @@
-package models
+package model
 
 import "time"
 
 type Spot struct {
 	Model
-	PetUUID     string    `json:"pet_uuid"`
+	PetID       string    `json:"pet_id"`
 	Name        string    `json:"name"`
 	StartDate   time.Time `json:"start_date"`
 	Status      string    `json:"status"`

@@ -1,4 +1,4 @@
-package databases
+package database
 
 import (
 	"os"
@@ -16,8 +16,6 @@ type DatabaseClient struct {
 func DatabaseService() *DatabaseClient {
 	session, _ := Connect()
 	d := DatabaseClient{DB: session}
-
-	defer d.DB.Close()
 
 	// output sql query
 	d.DB.LogMode(true)
