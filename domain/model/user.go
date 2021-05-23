@@ -9,7 +9,3 @@ type User struct {
 
 	Pets []Pet `gorm:"foreignKey:UserUUID"`
 }
-
-func CreateUser() (user User, err error) {
-
-}

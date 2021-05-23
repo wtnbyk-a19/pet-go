@@ -1,7 +1,8 @@
 package main
 
 import (
-	"pet-go/router"
+	"pet-go/injector"
+	"pet-go/routes"
 
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo"
@@ -19,10 +20,13 @@ func init() {
 }
 
 func main() {
+
+	userHandler := injector.InjectUserHandler()
+
 	e := echo.New()
 
-	// router
-	router.Init(e)
+	// Routes
+	routes.Init(e, userHandler)
 
 	// Start server
 	e.Logger.Fatal(e.Start(":8080"))
