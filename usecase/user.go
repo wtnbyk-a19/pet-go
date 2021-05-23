@@ -21,6 +21,7 @@ func NewUserUsecase(userRepo repository.UserRepository) UserUsecase {
 
 // Userの新規追加
 func (usecase *userUsecase) Add(user *model.User) (err error) {
+	user.GenerateUUID()
 	_, err = usecase.userRepo.Create(user)
 	return
 }

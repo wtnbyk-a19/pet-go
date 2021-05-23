@@ -21,15 +21,6 @@ func (handler *UserHandler) Add() echo.HandlerFunc {
 	return func(c echo.Context) error {
 		var user model.User
 		c.Bind(&user)
-
-		name := c.FormValue("name")
-		email := c.FormValue("email")
-		password := c.FormValue("password")
-
-		user.Name = name
-		user.Email = email
-		user.Password = password
-
 		err := handler.userUsecase.Add(&user)
 		return c.JSON(http.StatusOK, err)
 	}
