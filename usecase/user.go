@@ -8,6 +8,7 @@ import (
 type UserUsecase interface {
 	Add(*model.User) (err error)
 	Edit(*model.User) (err error)
+	GetUser(int) (model *model.User, err error)
 	GetUsers() (users []*model.User, err error)
 }
 
@@ -30,6 +31,12 @@ func (usecase *userUsecase) Add(user *model.User) (err error) {
 // Userの編集
 func (usecase *userUsecase) Edit(user *model.User) (err error) {
 	_, err = usecase.userRepo.Save(user)
+	return
+}
+
+// User検索
+func (usecase *userUsecase) GetUser(id int) (user *model.User, err error) {
+	user, err = usecase.userRepo.FindByID(id)
 	return
 }
 

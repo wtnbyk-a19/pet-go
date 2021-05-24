@@ -13,6 +13,7 @@ func Init(e *echo.Echo) {
 
 	g := e.Group("/api")
 	{
+		g.GET("/user", userHandler.GetUser())
 		g.GET("/users", userHandler.GetUsers())
 		g.POST("/signup", userHandler.Add())
 		g.POST("/user/pet", petHandler.Add())

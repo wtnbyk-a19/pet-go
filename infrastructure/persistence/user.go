@@ -25,6 +25,12 @@ func (userRepo *UserRepository) Save(user *model.User) (*model.User, error) {
 	return user, result.Error
 }
 
+func (userRepo *UserRepository) FindByID(id int) (*model.User, error) {
+	var user model.User
+	result := userRepo.SqlHandler.Conn.First(&user, id)
+	return &user, result.Error
+}
+
 func (userRepo *UserRepository) FindAll() (users []*model.User, err error) {
 	var user []model.User
 	result := userRepo.SqlHandler.Conn.Find(&user)

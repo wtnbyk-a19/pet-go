@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"pet-go/domain/model"
 	"pet-go/usecase"
+	"strconv"
 
 	"github.com/labstack/echo"
 )
@@ -32,6 +33,17 @@ func (handler *UserHandler) Edit() echo.HandlerFunc {
 		c.Bind(&user)
 		err := handler.userUsecase.Edit(&user)
 		return c.JSON(http.StatusOK, err)
+	}
+}
+
+func (handler *UserHandler) GetUser() echo.HandlerFunc {
+	return func(c echo.Context) error {
+		id, _ := strconv.Atoi(c.FormValue("ID"))
+		user, err := handler.userUsecase.GetUser(id)
+		if err != nil {
+			return c.JSON(http.StatusBadRequest, user)
+		}
+		return c.JSON(http.StatusOK, user)
 	}
 }
 
